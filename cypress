@@ -1,0 +1,143 @@
+describe(“Testing API Endpoints Using Cypress”, () => {
+
+      it(“Test GET Request”, () => {
+            cy.request(“https://reqres.in/api/users?page=2”)
+                 .then((response) => {
+                        expect(response.body).to.have.property('code', 200);
+            })
+      })
+       it(“Test GET Request”, () => {
+            cy.request(“https://reqres.in/api/users/2”)
+                 .then((response) => {
+                        expect(response.body).to.have.property('code', 200);
+            })
+      })
+       it(“Test GET Request”, () => {
+            cy.request(“https://reqres.in/api/users/23”)
+                 .then((response) => {
+                        expect(response.body).to.have.property('code', 404);
+            })
+      })
+      
+  it(“Test GET Request”, () => {
+            cy.request(“https://reqres.in/api/unknown”)
+                 .then((response) => {
+                        expect(response.body).to.have.property('code', 200);
+            })
+      })
+       it(“Test GET Request”, () => {
+            cy.request(“https://reqres.in/api/unknown/2”)
+                 .then((response) => {
+                        expect(response.body).to.have.property('code', 200);
+            })
+      })
+       it(“Test GET Request”, () => {
+            cy.request(“https://reqres.in/api/unknown/23”)
+                 .then((response) => {
+                        expect(response.body).to.have.property('code', 200);
+            })
+      })
+      it(“Test POST Request”, () => {
+            cy.request({
+                 method: ‘POST’,
+                 url: ‘https://reqres.in/api/users’,
+                 body: {
+                     “name” : morpheus,
+                     “job”:“leader”
+                 }
+            }).then((response) => { 
+                    expect(response.body).to.have.property('code', 201); 
+            })
+      })
+      it(“Test PUT Request”, () => {
+            cy.request({
+                 method: ‘PUT’,
+                 url: ‘https://reqres.in/api/users’,
+                 body: {
+                     “name” : morpheus,
+                     “job”:“leader”
+                 }
+            }).then((response) => { 
+                    expect(response.body).to.have.property('code', 201); 
+            })
+      })
+
+      it(“Test PATCH Request”, () => {
+            cy.request({
+                    method: ‘PATCH’,
+                    url: ‘https://reqres.in/api/users/2’,
+                    body: { 
+                       “name” : morpheus,
+                       “job”:“zion resident”
+                    }
+            }).then((response) => { 
+                    expect(response.body).to.have.property('code', 200); 
+            })          
+      })  
+      
+      
+
+      it(“Test DELETE Request”, () => {
+            cy.request({
+                      method : ‘DELETE’,
+                      url: ‘https://reqres.in/api/users/2’
+                      }).then((response) => {
+                        expect(response.body).to.be.empty;
+            })	
+      })
+      it(“Test POST Request”, () => {
+            cy.request({
+                 method: ‘POST’,
+                 url: ‘https://reqres.in/api/register’,
+                 body: {
+                     “email” : "eve.holt@reqres.in",
+                     “password”:“pistol”
+                 }
+            }).then((response) => { 
+                    expect(response.body).to.have.property('code', 200); 
+            })
+      })
+          it(“Test POST Request”, () => {
+            cy.request({
+                 method: ‘POST’,
+                 url: ‘https://reqres.in/api/register’,
+                 body: {
+                     “email” : "sydney@fife"
+      
+                 }
+            }).then((response) => { 
+                    expect(response.body).to.have.property('code', 400); 
+            })
+      }) 
+        it(“Test POST Request”, () => {
+            cy.request({
+                 method: ‘POST’,
+                 url: ‘https://reqres.in/api/login’,
+                 body: {
+                     “email” : "eve.holt@reqres.in",
+                     "password": "cityslicka"
+               
+                 }
+            }).then((response) => { 
+                    expect(response.body).to.have.property('code', 200); 
+            })
+      }) 
+    it(“Test POST Request”, () => {
+            cy.request({
+                 method: ‘POST’,
+                 url: ‘https://reqres.in/api/login’,
+                 body: {
+                     “email” : "peter@klaven"
+      
+                 }
+            }).then((response) => { 
+                    expect(response.body).to.have.property('code', 400); 
+            })
+      })  
+     it(“Test GET Request”, () => {
+            cy.request(“https://reqres.in/api/users?delay=3”)
+                 .then((response) => {
+                        expect(response.body).to.have.property('code', 200);
+            })
+      })  
+ })
